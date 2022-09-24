@@ -1,12 +1,9 @@
 # This is a sample Python script.
-import numpy as np
 import pandas as pd
-import itertools
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import PassiveAggressiveClassifier
 from sklearn.metrics import classification_report, accuracy_score
-from joblib import dump, load
 
 #data 1
 
@@ -20,7 +17,7 @@ data = data.sample(frac=1).reset_index(drop=True)
 data['text']= data['title']+' '+data['text']
 data.drop(['title','subject','date'], axis=1, inplace=True)
 
-#data 2
+#data 2 (bigger)
 data2_train = pd.read_csv('news\\Fake or Real News Dataset\\train.csv')
 data2_test = pd.read_csv('news\\Fake or Real News Dataset\\test.csv')
 data2=pd.concat([data2_train, data2_test], axis=0)
@@ -32,7 +29,7 @@ data2.drop('text;label', axis=1, inplace=True)
 data2=pd.concat([data, data2], axis=0)
 data2 = data2.sample(frac=1).reset_index(drop=True)
 
-#data 3
+#data 3 (biggest)
 data3_train = pd.read_csv('news\\Fake News Detection Dataset\\train.csv')
 data3_test = pd.read_csv('news\\Fake News Detection Dataset\\test.csv')
 data3=pd.concat([data3_train, data3_test], axis=0)

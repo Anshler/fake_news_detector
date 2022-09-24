@@ -2,7 +2,7 @@ from newsplease import NewsPlease
 import PySimpleGUI as sg
 import string
 from underthesea import word_tokenize
-from joblib import dump, load
+from joblib import load
 from langdetect import detect
 
 def get_news_to_list(url_list):
@@ -69,7 +69,7 @@ def main():
     # ----- Run the Event Loop -----
     # --------------------------------- Event Loop ---------------------------------
     while True:
-        frame, event, values = sg.read_all_windows(timeout=25)
+        frame, event, values = sg.read_all_windows()
 
         if event is None or event == 'Exit': #bấm ❎ là thoát
             break
