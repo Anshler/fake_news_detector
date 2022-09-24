@@ -5,10 +5,10 @@ import itertools
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import PassiveAggressiveClassifier
-from sklearn.metrics import classification_report, confusion_matrix,accuracy_score
+from sklearn.metrics import classification_report, accuracy_score
 from joblib import dump, load
 
-#data
+#data 1
 
 real=pd.read_csv('news\\True.csv')
 real['label']= 1
@@ -20,9 +20,32 @@ data = data.sample(frac=1).reset_index(drop=True)
 data['text']= data['title']+' '+data['text']
 data.drop(['title','subject','date'], axis=1, inplace=True)
 
+#data 2
+data2_train = pd.read_csv('news\\Fake or Real News Dataset\\train.csv')
+data2_test = pd.read_csv('news\\Fake or Real News Dataset\\test.csv')
+data2=pd.concat([data2_train, data2_test], axis=0)
+
+data2['text']=data2['text;label'].apply(lambda x: x.split(';')[0])
+data2['label']=data2['text;label'].apply(lambda x: x.split(';')[1]).astype(int)
+data2.drop('text;label', axis=1, inplace=True)
+
+data2=pd.concat([data, data2], axis=0)
+data2 = data2.sample(frac=1).reset_index(drop=True)
+
+#data 3
+data3_train = pd.read_csv('news\\Fake News Detection Dataset\\train.csv')
+data3_test = pd.read_csv('news\\Fake News Detection Dataset\\test.csv')
+data3=pd.concat([data3_train, data3_test], axis=0)
+
+data3['text']=data3['text;label'].apply(lambda x: x.split(';')[0])
+data3['label']=data3['text;label'].apply(lambda x: x.split(';')[1]).astype(int)
+data3.drop('text;label', axis=1, inplace=True)
+
+data3=pd.concat([data3, data2], axis=0)
+data3 = data3.sample(frac=1).reset_index(drop=True)
 
 #train-test split
-x_train, x_test, y_train, y_test =train_test_split(data['text'],data['label'], test_size=0.2, random_state=7)
+x_train, x_test, y_train, y_test =train_test_split(data3['text'],data3['label'], test_size=0.2, random_state=7)
 #tạo TfidfVectorizer
 tfidf_vectorizer=TfidfVectorizer(stop_words='english', max_df=0.7)
 #transform train với test set

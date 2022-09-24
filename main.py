@@ -11,7 +11,7 @@ def get_news_to_list(url_list):
         try:
             news = NewsPlease.from_url(url)
             news_list.append(news)
-        except :
+        except:
             continue
     return news_list
 
@@ -29,7 +29,7 @@ sg.Window._move_all_windows = True
 
 def main():
     background_layout = [[sg.Col([[sg.Text('FAKE NEWS DETECTOR', font=('',13,'bold'), grab=True,
-                            background_color= 'maroon', text_color= 'old lace')]]), #texbox tên chương trình
+                            background_color= 'maroon', text_color= 'old lace')]]), #texbox tên chương trình, 'old lace' là màu trắng
                             sg.Col([[sg.Text('➖ ⏹ ❎', text_color= 'black',pad=(7,0), #textbox dấu ❎
                                 enable_events=True,  key='Exit')]],
                                     element_justification='r', key='-C-', grab=True)],
@@ -69,11 +69,11 @@ def main():
     # ----- Run the Event Loop -----
     # --------------------------------- Event Loop ---------------------------------
     while True:
-        frame, event, values = sg.read_all_windows()
+        frame, event, values = sg.read_all_windows(timeout=25)
 
         if event is None or event == 'Exit': #bấm ❎ là thoát
             break
-        if event == 'Priority': # background ko đc đè lên khung chữ
+        if event == 'Priority': #background ko đc đè lên khung chữ
             window.BringToFront()
         if event == '-START PROCESS-': #nhập vào tạo list url
             url_list_str = values['-URLLIST INP-']
