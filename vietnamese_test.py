@@ -5,6 +5,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import PassiveAggressiveClassifier
 from sklearn.metrics import classification_report, accuracy_score
 from underthesea import word_tokenize
+from joblib import dump
 
 data_v = pd.concat([pd.read_csv('news\\vietnamese\\CSV\\vn_news_226_tlfr.csv'), pd.read_csv('news\\vietnamese\\CSV\\vn_news_223_tdlfr.csv').drop(['domain'], axis=1, inplace=True)])
 data_v['label']= data_v['label'].replace([1,0],[0,1])
