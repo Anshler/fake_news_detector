@@ -69,7 +69,7 @@ def main():
     # ----- Run the Event Loop -----
     # --------------------------------- Event Loop ---------------------------------
     while True:
-        frame, event, values = sg.read_all_windows(timeout=25)
+        frame, event, values = sg.read_all_windows()
 
         if event is None or event == 'Exit': #bấm ❎ là thoát
             break
