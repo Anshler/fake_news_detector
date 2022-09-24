@@ -23,7 +23,7 @@ tfidf_vectorizer=TfidfVectorizer(tokenizer=viet_tokenizer, stop_words=stop_word,
 tfidf_train=tfidf_vectorizer.fit_transform(x_train)
 tfidf_test=tfidf_vectorizer.transform(x_test)
 #lưu vectorizer
-dump(tfidf_vectorizer,'tfidf_viet.joblib')
+#dump(tfidf_vectorizer,'tfidf_viet.joblib')
 
 #tạo model
 model = PassiveAggressiveClassifier(max_iter=100)
@@ -37,4 +37,4 @@ score=accuracy_score(y_test,y_pred)
 print(f'Accuracy: {round(score*100,2)}%')
 
 #lưu model
-dump(model, 'model_viet.joblib')
+#dump(model, 'model_viet.joblib')
