@@ -34,13 +34,7 @@ url_list.append('https://bleacherreport.com/articles/10050165-kenyas-eliud-kipch
 news=get_news_to_list(url_list)
 data=[]
 for a in news:
-    data.append(str(a.title)+' '+str(a.maintext))
+    data.append(str(a.title.lower())+' '+str(a.maintext.lower()))
 
 y_pred = model.predict(tfidf_vectorizer.transform(data))
 print(y_pred)
-
-
-real=pd.read_csv('news\\True.csv')
-real['label']= 1
-fake=pd.read_csv('news\\Fake.csv')
-fake['label']= 0

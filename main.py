@@ -88,7 +88,7 @@ def main():
                         pred = model_viet.predict(tfidf_vectorizer_viet.transform([data]))
                         pred_list.extend(pred)
                     else:
-                        data = str(a.title.lower()) + ' ' + str(a.maintext.lower)
+                        data = str(a.title.lower()) + ' ' + str(a.maintext.lower())
                         pred = model.predict(tfidf_vectorizer.transform([data]))
                         pred_list.extend(pred)
                 except:
