@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import PassiveAggressiveClassifier
@@ -42,7 +43,7 @@ data3=pd.concat([data3, data2], axis=0)
 data3 = data3.sample(frac=1).reset_index(drop=True)
 
 #train-test split
-x_train, x_test, y_train, y_test =train_test_split(data3['text'].apply(lambda x : x.lower()),data3['label'], test_size=0.2, random_state=7)
+x_train, x_test, y_train, y_test =train_test_split(data2['text'].apply(lambda x : x.lower()),data2['label'], test_size=0.2, random_state=7)
 #tạo TfidfVectorizer
 tfidf_vectorizer=TfidfVectorizer(stop_words='english', max_df=0.7)
 #transform train với test set
@@ -58,7 +59,7 @@ model.fit(tfidf_train,y_train)
 #dự đoán
 y_pred=model.predict(tfidf_test)
 #print(y_pred)
-#print(data3.head())
+print(data3.head())
 print(classification_report(y_test,y_pred))
 print(confusion_matrix(y_test,y_pred, labels=[0,1]))
 score=accuracy_score(y_test,y_pred)

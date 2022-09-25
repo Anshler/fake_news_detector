@@ -16,9 +16,13 @@ def get_news_to_list(url_list):
             continue
     return news_list
 
-stop_word = open('news/vietnamese/viet_stop_word.txt', 'r', encoding="utf-8").read().split('\n').extend(string.punctuation)
+stop_word = open('news/vietnamese/viet_stop_word.txt', 'r', encoding="utf-8").read().split('\n')
+stop_word.extend(string.punctuation)
+stop_word.extend(['…','”','–','“','. ảnh'])
+
 def viet_tokenizer(text):
     text = word_tokenize(str(text))
+    text = [word for word in text if word.lower() not in stop_word]
     return text
 
 model_viet = load('model_viet.joblib')
