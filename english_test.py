@@ -30,7 +30,7 @@ data2.drop('text;label', axis=1, inplace=True)
 data2=pd.concat([data, data2], axis=0)
 data2 = data2.sample(frac=1).reset_index(drop=True)
 
-#data 3 (biggest)
+#data 3 (even bigger)
 data3_train = pd.read_csv('news\\Fake News Detection Dataset\\train.csv')
 data3_test = pd.read_csv('news\\Fake News Detection Dataset\\test.csv')
 data3=pd.concat([data3_train, data3_test], axis=0)
@@ -42,7 +42,7 @@ data3.drop('text;label', axis=1, inplace=True)
 data3=pd.concat([data3, data2], axis=0)
 data3 = data3.sample(frac=1).reset_index(drop=True)
 
-#data 4
+#data 4 (biggest)
 data4 =pd.read_csv('news\\More_news\\train.csv')
 data4['text'] = data4['title']+' '+data4['text']
 data4['text'] = data4['text'].astype(str)
@@ -61,11 +61,11 @@ tfidf_vectorizer=TfidfVectorizer(stop_words='english', max_df=0.7)
 tfidf_train=tfidf_vectorizer.fit_transform(x_train)
 tfidf_test=tfidf_vectorizer.transform(x_test)
 #lưu vectorizer
-dump(tfidf_vectorizer,'tfidf.joblib')
+#dump(tfidf_vectorizer,'tfidf.joblib')
 
 #tạo model
 model = PassiveAggressiveClassifier(max_iter=100)
-#model.fit(tfidf_train,y_train)
+model.fit(tfidf_train,y_train)
 
 #dự đoán
 y_pred=model.predict(tfidf_test)
