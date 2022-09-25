@@ -33,6 +33,10 @@ tfidf_vectorizer = load('tfidf.joblib')
 sg.Window._move_all_windows = True
 
 def main():
+    # -------------------- Thanh công cụ và interface --------------------
+
+    # ----- Tạo thanh công cụ (tên program và ➖ ⏹ ❎) -----
+
     background_layout = [[sg.Col([[sg.Text('FAKE NEWS DETECTOR', font=('',13,'bold'), grab=True,
                             background_color= 'maroon', text_color= 'old lace')]]), #texbox tên chương trình, 'old lace' là màu trắng
                             sg.Col([[sg.Text('➖ ⏹ ❎', text_color= 'black',pad=(7,0), #textbox dấu ❎
@@ -40,9 +44,13 @@ def main():
                                     element_justification='r', key='-C-', grab=True)],
                             [sg.Image('background.png',enable_events=True, key='Priority')]] # ảnh nền
 
+    # ----- Window thanh công cụ -----
+
     window_background = sg.Window('Background', background_layout, keep_on_top=True, no_titlebar=True, finalize=True, margins=(0, 0),
                                   element_padding=(0, 0), size =(600,510))
     window_background['-C-'].expand(True)  #căn ❎ lề bên phải
+
+    # ----- Interface -----
 
     upper = [[sg.Text('News URLs', background_color='old lace', text_color='black', font=('',12,''))],
                 [sg.Multiline(enable_events=True, size=(80, 10), background_color= 'old lace',
@@ -59,20 +67,21 @@ def main():
                                reroute_cprint=True, disabled=True, autoscroll=True)]]
 
     # ----- Full layout -----
+
     layout = [
         [sg.Column(upper)],
         [mid],
         [sg.Column(low)]
     ]
 
-    # --------------------------------- Create Window ---------------------------------
+    # ----- Window interface -----
 
     window = sg.Window('Foreground', layout, finalize=True, keep_on_top=True, grab_anywhere=True,
                            transparent_color=sg.theme_background_color(), no_titlebar=True)
     window['-X-'].expand(True)  #căn button DETECT lề giữa
 
-    # ----- Run the Event Loop -----
-    # --------------------------------- Event Loop ---------------------------------
+    # --------------------------------- Chạy Event Loop ---------------------------------
+
     while True:
         frame, event, values = sg.read_all_windows()
 
@@ -106,8 +115,8 @@ def main():
 
     window.close()
     window_background.close()
-    # --------------------------------- Close & Exit ---------------------------------
 
+    # --------------------------------- Close & Exit ---------------------------------
 
 if __name__ == '__main__':
     main()
