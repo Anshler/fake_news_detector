@@ -42,24 +42,35 @@ data3.drop('text;label', axis=1, inplace=True)
 data3=pd.concat([data3, data2], axis=0)
 data3 = data3.sample(frac=1).reset_index(drop=True)
 
+#data 4
+data4 =pd.read_csv('news\\More_news\\train.csv')
+data4['text'] = data4['title']+' '+data4['text']
+data4['text'] = data4['text'].astype(str)
+data4['label']=data4['label'].astype(int)
+data4['label']= data4['label'].replace([1,0],[0,1])
+data4.drop(['title','author','id'], axis=1, inplace=True)
+
+data4=pd.concat([data3, data4], axis=0)
+data4 = data4.sample(frac=1).reset_index(drop=True)
+
 #train-test split
-x_train, x_test, y_train, y_test =train_test_split(data2['text'].apply(lambda x : x.lower()),data2['label'], test_size=0.2, random_state=7)
+x_train, x_test, y_train, y_test =train_test_split(data4['text'].apply(lambda x : x.lower()),data4['label'], test_size=0.2, random_state=7)
 #tạo TfidfVectorizer
 tfidf_vectorizer=TfidfVectorizer(stop_words='english', max_df=0.7)
 #transform train với test set
 tfidf_train=tfidf_vectorizer.fit_transform(x_train)
 tfidf_test=tfidf_vectorizer.transform(x_test)
 #lưu vectorizer
-#dump(tfidf_vectorizer,'tfidf.joblib')
+dump(tfidf_vectorizer,'tfidf.joblib')
 
 #tạo model
 model = PassiveAggressiveClassifier(max_iter=100)
-model.fit(tfidf_train,y_train)
+#model.fit(tfidf_train,y_train)
 
 #dự đoán
 y_pred=model.predict(tfidf_test)
 #print(y_pred)
-print(data3.head())
+print(data4.head())
 print(classification_report(y_test,y_pred))
 print(confusion_matrix(y_test,y_pred, labels=[0,1]))
 score=accuracy_score(y_test,y_pred)
