@@ -84,11 +84,11 @@ def main():
                 try:
                     lang=detect(a.title)
                     if lang == 'vi':
-                        data = str(a.title) + ' ' + str(a.maintext)
+                        data = str(a.title.lower()) + ' ' + str(a.maintext.lower())
                         pred = model_viet.predict(tfidf_vectorizer_viet.transform([data]))
                         pred_list.extend(pred)
                     else:
-                        data = str(a.title) + ' ' + str(a.maintext)
+                        data = str(a.title.lower()) + ' ' + str(a.maintext.lower)
                         pred = model.predict(tfidf_vectorizer.transform([data]))
                         pred_list.extend(pred)
                 except:

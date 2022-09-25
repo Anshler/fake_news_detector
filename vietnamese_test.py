@@ -16,7 +16,7 @@ def viet_tokenizer(text):
     text = word_tokenize(str(text))
     return text
 
-x_train, x_test, y_train, y_test =train_test_split(data_v['text'],data_v['label'], test_size=0.2, random_state=7)
+x_train, x_test, y_train, y_test =train_test_split(data_v['text'].apply(lambda x: x.lower()),data_v['label'], test_size=0.2, random_state=7)
 #tạo TfidfVectorizer
 tfidf_vectorizer=TfidfVectorizer(tokenizer=viet_tokenizer, stop_words=stop_word, max_df=0.7)
 #transform train với test set

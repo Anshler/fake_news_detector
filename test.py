@@ -1,5 +1,7 @@
 from joblib import dump, load
 from newsplease import NewsPlease
+import pandas as pd
+from sklearn.metrics import classification_report, accuracy_score
 
 model=load('model.joblib')
 tfidf_vectorizer = load('tfidf.joblib')
@@ -26,6 +28,9 @@ url_list.append('https://vietnamnews.vn/travel/1337914/vie-t-nam-among-10-best-d
 url_list.append('https://edition.cnn.com/2022/09/24/tech/iran-internet-blackout/index.html')
 url_list.append('https://edition.cnn.com/2022/09/23/investing/dow-stock-market-today/index.html')
 url_list.append('https://edition.cnn.com/2022/09/24/economy/home-heat-winter/index.html')
+url_list.append('https://www.wsmv.com/2022/09/23/macon-deputy-rams-car-speeding-through-homecoming-parade-route/')
+url_list.append('https://www.cbsnews.com/chicago/news/how-did-plainfield-get-max-from-stranger-things-halloween-decoration-float/')
+url_list.append('https://bleacherreport.com/articles/10050165-kenyas-eliud-kipchoge-sets-marathon-world-record-at-37-years-old-in-berlin?utm_source=cnn.com&utm_medium=referral&utm_campaign=editorial')
 news=get_news_to_list(url_list)
 data=[]
 for a in news:
@@ -33,6 +38,9 @@ for a in news:
 
 y_pred = model.predict(tfidf_vectorizer.transform(data))
 print(y_pred)
-#print(classification_report(data,y_pred))
-#score=accuracy_score(data,y_pred)
-#print(f'Accuracy: {round(score*100,2)}%')
+
+
+real=pd.read_csv('news\\True.csv')
+real['label']= 1
+fake=pd.read_csv('news\\Fake.csv')
+fake['label']= 0
