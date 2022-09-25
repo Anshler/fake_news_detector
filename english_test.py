@@ -53,8 +53,35 @@ data4.drop(['title','author','id'], axis=1, inplace=True)
 data4=pd.concat([data3, data4], axis=0)
 data4 = data4.sample(frac=1).reset_index(drop=True)
 
+#data 5
+data5_real=pd.read_csv('news\\cnn\\clean_true_data.csv', encoding = "ISO-8859-1")
+data5_real['label']= 1
+data5_fake=pd.read_csv('news\\cnn\\clean_fake_data.csv', encoding = "ISO-8859-1")
+data5_fake['label']=0
+
+def removeURL(text):
+    text=text.replace('» 100percentfedUp.com','')
+    text=text.replace('- ABC News', '')
+    text=text.replace('- CNNPolitics.com', '')
+    text=text.replace('- CNN.com', '')
+    return text
+
+data5_real = data5_real[['text','title','label']]
+data5_fake = data5_fake[['text','title','label']]
+
+data5=pd.concat([data5_fake, data5_real], axis=0)
+data5 = data5.sample(frac=1).reset_index(drop=True)
+data5['title']=data5['title'].apply(lambda x: removeURL(x))
+data5['text']= data5['title']+' '+data5['text']
+data5.drop(['title'], axis=1, inplace=True)
+data5['text'] = data5['text'].astype(str)
+data5['label'] = data5['label'].astype(int)
+
+data5=pd.concat([data4, data5], axis=0)
+data5 = data5.sample(frac=1).reset_index(drop=True)
+
 #train-test split
-x_train, x_test, y_train, y_test =train_test_split(data4['text'].apply(lambda x : x.lower()),data4['label'], test_size=0.2, random_state=7)
+x_train, x_test, y_train, y_test =train_test_split(data5['text'].apply(lambda x : x.lower()),data5['label'], test_size=0.2, random_state=7)
 #tạo TfidfVectorizer
 tfidf_vectorizer=TfidfVectorizer(stop_words='english', max_df=0.7)
 #transform train với test set
