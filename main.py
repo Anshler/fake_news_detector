@@ -10,7 +10,8 @@ def get_news_to_list(url_list):
     for url in url_list:
         try:
             news = NewsPlease.from_url(url)
-            news_list.append(news)
+            if news.title is not None and news.maintext is not None:
+                news_list.append(news)
         except:
             continue
     return news_list
@@ -81,26 +82,21 @@ def main():
             news = get_news_to_list(url_list) #đọc url lấy nội dung
             pred_list = []
             for a in news:
-                try:
-                    lang=detect(a.title)
-                    if lang == 'vi':
-                        data = str(a.title.lower()) + ' ' + str(a.maintext.lower())
-                        pred = model_viet.predict(tfidf_vectorizer_viet.transform([data]))
-                        pred_list.extend(pred)
-                    else:
-                        data = str(a.title.lower()) + ' ' + str(a.maintext.lower())
-                        pred = model.predict(tfidf_vectorizer.transform([data]))
-                        pred_list.extend(pred)
-                except:
-                    pred_list.append(2)
+                lang=detect(a.title)
+                if lang == 'vi':
+                    data = str(a.title.lower()) + ' ' + str(a.maintext.lower())
+                    pred = model_viet.predict(tfidf_vectorizer_viet.transform([data]))
+                    pred_list.extend(pred)
+                else:
+                    data = str(a.title.lower()) + ' ' + str(a.maintext.lower())
+                    pred = model.predict(tfidf_vectorizer.transform([data]))
+                    pred_list.extend(pred)
             pred_word=''
             for i in range(len(pred_list)):
                 if pred_list[i] == 1:
                     pred_word+= str(news[i].title) +'\n-Real -' + str(detect(news[i].title)) + '\n\n'
-                elif pred_list[i] == 0:
-                    pred_word+= str(news[i].title) +'\n-Fake -' + str(detect(news[i].title)) + '\n\n'
                 else:
-                    pred_word += str(news[i].title) + '\n-Unknown\n\n'
+                    pred_word+= str(news[i].title) +'\n-Fake -' + str(detect(news[i].title)) + '\n\n'
 
             window['-OUTPUT-'].update(pred_word)
 

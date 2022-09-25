@@ -34,7 +34,9 @@ url_list.append('https://bleacherreport.com/articles/10050165-kenyas-eliud-kipch
 news=get_news_to_list(url_list)
 data=[]
 for a in news:
-    data.append(str(a.title.lower())+' '+str(a.maintext.lower()))
+    if a.maintext is not None and a.title is not None:
+        data.append(str(a.title).lower()+' '+str(a.maintext).lower())
+        print(str(a.title).lower()+' '+str(a.maintext).lower())
 
 y_pred = model.predict(tfidf_vectorizer.transform(data))
 print(y_pred)

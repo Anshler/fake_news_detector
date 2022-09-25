@@ -2,7 +2,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import PassiveAggressiveClassifier
-from sklearn.metrics import classification_report, accuracy_score
+from sklearn.metrics import classification_report, accuracy_score, confusion_matrix
 from joblib import dump
 
 #data 1
@@ -60,6 +60,7 @@ y_pred=model.predict(tfidf_test)
 #print(y_pred)
 #print(data3.head())
 print(classification_report(y_test,y_pred))
+print(confusion_matrix(y_test,y_pred, labels=[0,1]))
 score=accuracy_score(y_test,y_pred)
 print(f'Accuracy: {round(score*100,2)}%')
 
