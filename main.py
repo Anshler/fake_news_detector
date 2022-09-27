@@ -49,22 +49,22 @@ def main():
     window_background = sg.Window('Background', background_layout, keep_on_top=True, no_titlebar=True, finalize=True, margins=(0, 0),
                                   element_padding=(0, 0), size =(600,510))
     window_background['-C-'].expand(True)  #căn ❎ lề bên phải
-
+    4
     # ----- Interface -----
 
-    upper = [[sg.Text('News URLs', background_color='old lace', text_color='black', font=('',12,''))],
+    upper = [[sg.Text('News URLs', background_color='old lace', text_color='black', font=('',12,''), expand_x= True, pad= (4,0))],
                 [sg.Multiline(enable_events=True, size=(80, 10), background_color= 'old lace',
-                              sbar_background_color='old lace', sbar_arrow_color='black', key='-URLLIST INP-')]]
+                              sbar_background_color='old lace', sbar_arrow_color='black', key='-URLLIST INP-', pad= (4,0))]]
 
-    mid = [[sg.Col([[sg.Col([[sg.Button('▶ DETECT ◀', button_color='black on old lace', font=('',13,'bold'), key='-START PROCESS-', pad=(0,0))]],
+    mid = [[sg.Col([[sg.Col([[sg.Button('▶ DETECT ◀', button_color='old lace on maroon', font=('',13,'bold'), key='-START PROCESS-', pad=(0,0))]],
                 background_color='black')]],
-                   #outline cho button, #theo dạng 3 box trắng, trong đen, trong trắng -> đen ở giữa tạo thành đường viền
-                    background_color='old lace', expand_x= True, element_justification='c', key='-X-', pad=(10,0))]]
+                   #outline cho button, #theo dạng 3 box trắng, trong đen, trong đỏ -> đen ở giữa tạo thành đường viền
+                    background_color='old lace', expand_x= True, element_justification='c', key='-X-', pad=(10,10))]]
 
-    low = [[sg.Text('Result', background_color='old lace', text_color='black', font=('',12,''))],
+    low = [[sg.Text('Results', background_color='old lace', text_color='black', font=('',12,''),expand_x= True, pad= (4,0))],
                  [sg.Multiline(key='-OUTPUT-', size=(80, 10), background_color= 'old lace',
                                sbar_background_color='old lace', sbar_arrow_color='black',
-                               reroute_cprint=True, disabled=True, autoscroll=True)]]
+                               reroute_cprint=True, disabled=True, autoscroll=True, pad= (4,0))]]
 
     # ----- Full layout -----
 
