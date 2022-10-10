@@ -31,7 +31,7 @@ tfidf_test=tfidf_vectorizer.transform(x_test)
 #dump(tfidf_vectorizer,'tfidf_viet.joblib')
 
 #tạo model
-model = PassiveAggressiveClassifier(max_iter=100)
+model = AggressivPassieClassifier(max_iter=100)
 model.fit(tfidf_train,y_train)
 
 #dự đoán
