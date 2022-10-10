@@ -49,7 +49,6 @@ def main():
     window_background = sg.Window('Background', background_layout, keep_on_top=True, no_titlebar=True, finalize=True, margins=(0, 0),
                                   element_padding=(0, 0), size =(600,510))
     window_background['-C-'].expand(True)  #căn ❎ lề bên phải
-    4
     # ----- Interface -----
 
     upper = [[sg.Text('News URLs', background_color='old lace', text_color='black', font=('',12,''), expand_x= True, pad= (4,0))],
