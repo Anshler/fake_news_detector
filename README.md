@@ -61,10 +61,8 @@ dump(model,'models/model_w2v.joblib')
 
 ## Explanation
 
-[english_test.py](english_test.py): sử dụng [CountVectorizer](https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html) và [TFIDFVectorizer](https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html). Train bằng [PasiveAgressiveClassifier](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.PassiveAggressiveClassifier.html)
+[english_test.py](english_test.py): use [CountVectorizer](https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html) and [TFIDFVectorizer](https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html). Train with [PasiveAgressiveClassifier](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.PassiveAggressiveClassifier.html)
 
-[vietnamese_test.py](vietnamese_test.py): giống english_test.py, sử dụng [Underthesea](https://underthesea.readthedocs.io/en/latest/readme.html) tokenizer(cho tiếng Việt) trước khi vectorize
+[vietnamese_test.py](vietnamese_test.py): similar to english_test.py, but use [Underthesea](https://underthesea.readthedocs.io/en/latest/readme.html) tokenizer(for Vietnamese) before vectorization
 
-[english_Word2vec_PAC.py](english_Word2vec_PAC.ipynb): Sử dụng Word2Vec. Train bằng PasiveAgressiveClassifier
-
-test.py để chơi thôi, muốn xóa cũng đc
+[english_Word2vec_PAC.py](english_Word2vec_PAC.ipynb): Use Word2Vec. Train with PasiveAgressiveClassifier
