@@ -21,8 +21,8 @@ For inference, run [main.py](main.py)
 
 All other files are for training. To retrain the models, uncomment the lo```load``` and ```dump``` function
 
+in [main.py](main.py)
 ```python
-# in main.py
 
 model_viet = load('models/model_viet.joblib')
 model=load('models/model.joblib')
@@ -30,14 +30,36 @@ tfidf_vectorizer_viet = load('models/tfidf_viet.joblib')
 tfidf_vectorizer = load('models/tfidf.joblib')
 ```
 
+in [english_test.py](english_test.py)
 ```python
 # in english_test.py
 
+  # lưu vectorizer
 dump(tfidf_vectorizer,'models/tfidf.joblib')
 dump(count_vectorizer, 'models/count.joblib')
 
+  # lưu model
 dump(model,'models/model.joblib')
 dump(model,'models/modelc.joblib')
+```
+
+in [vietnamese_test.py](vietnamese_test.py)
+```python
+  #lưu vectorizer
+dump(tfidf_vectorizer,'tfidf_viet.joblib')
+
+  #lưu model
+dump(model, 'models/model_viet.joblib')
+```
+
+in [english_Word2vec_PAC.py](english_Word2vec_PAC.py)
+```python
+w2v_model = Word2Vec(sentences=x, vector_size=1, window=5, min_count=1)
+    #save model
+w2v_model.save('models/w2v.model')
+
+  #save model
+dump(model,'models/model_w2v.joblib')
 ```
 
 ## Explanation
