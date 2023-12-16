@@ -19,8 +19,9 @@ All data are included in this repo.
 
 For inference, run [main.py](main.py)
 
-All other files are for training. To retrain the models, uncomment the following lines
-in [main.py](main.py)
+All other files are for training. To retrain the models, uncomment the following lines:
+
+- In [main.py](main.py)
 ```python
 model_viet = load('models/model_viet.joblib')
 model=load('models/model.joblib')
@@ -28,7 +29,7 @@ tfidf_vectorizer_viet = load('models/tfidf_viet.joblib')
 tfidf_vectorizer = load('models/tfidf.joblib')
 ```
 
-in [english_test.py](english_test.py)
+- In [english_test.py](english_test.py)
 ```python
   # lưu vectorizer
 dump(tfidf_vectorizer,'models/tfidf.joblib')
@@ -39,7 +40,7 @@ dump(model,'models/model.joblib')
 dump(model,'models/modelc.joblib')
 ```
 
-in [vietnamese_test.py](vietnamese_test.py)
+- In [vietnamese_test.py](vietnamese_test.py)
 ```python
   #lưu vectorizer
 dump(tfidf_vectorizer,'tfidf_viet.joblib')
@@ -48,7 +49,7 @@ dump(tfidf_vectorizer,'tfidf_viet.joblib')
 dump(model, 'models/model_viet.joblib')
 ```
 
-in [english_Word2vec_PAC.py](english_Word2vec_PAC.py)
+- In [english_Word2vec_PAC.py](english_Word2vec_PAC.py)
 ```python
 w2v_model = Word2Vec(sentences=x, vector_size=1, window=5, min_count=1)
   #save model
