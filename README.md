@@ -19,8 +19,7 @@ All data are included in this repo.
 
 For inference, run [main.py](main.py)
 
-All other files are for training. To retrain the models, uncomment the following ```load``` and ```dump``` function
-
+All other files are for training. To retrain the models, uncomment the following lines
 in [main.py](main.py)
 ```python
 model_viet = load('models/model_viet.joblib')
