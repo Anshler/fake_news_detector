@@ -23,6 +23,7 @@ All other files are for training. To retrain the models, uncomment the lo```load
 
 ```python
 # in main.py
+
 model_viet = load('models/model_viet.joblib')
 model=load('models/model.joblib')
 tfidf_vectorizer_viet = load('models/tfidf_viet.joblib')
@@ -35,8 +36,8 @@ tfidf_vectorizer = load('models/tfidf.joblib')
 dump(tfidf_vectorizer,'models/tfidf.joblib')
 dump(count_vectorizer, 'models/count.joblib')
 
-#dump(model,'models/model.joblib')
-#dump(model,'models/modelc.joblib')
+dump(model,'models/model.joblib')
+dump(model,'models/modelc.joblib')
 ```
 
 ## Explanation
