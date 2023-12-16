@@ -52,7 +52,7 @@ dump(model, 'models/model_viet.joblib')
 in [english_Word2vec_PAC.py](english_Word2vec_PAC.py)
 ```python
 w2v_model = Word2Vec(sentences=x, vector_size=1, window=5, min_count=1)
-    #save model
+  #save model
 w2v_model.save('models/w2v.model')
 
   #save model
