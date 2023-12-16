@@ -65,4 +65,4 @@ dump(model,'models/model_w2v.joblib')
 
 [vietnamese_test.py](vietnamese_test.py): similar to english_test.py, but use [Underthesea](https://underthesea.readthedocs.io/en/latest/readme.html) tokenizer(for Vietnamese) before vectorization
 
-[english_Word2vec_PAC.py](english_Word2vec_PAC.ipynb): Use [Word2Vec](https://arxiv.org/abs/1301.3781). Train with PasiveAgressiveClassifier
+[english_Word2vec_PAC.py](english_Word2vec_PAC.ipynb): similar to english_test.py, but use [Word2Vec](https://arxiv.org/abs/1301.3781)
