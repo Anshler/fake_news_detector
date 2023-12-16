@@ -13,7 +13,7 @@ For the English language, we use the Kaggle dataset and other datasets from larg
 
 For the Vietnamese test we use the Vietnamese Fake News Dataset (VFND). This contains over 200 news, collected in the period from 2017 to 2019 and uses several, cross-referencing sources, classified by the community.
 
-All data are included in this repo.
+_All data are included in this repo_
 
 ## Tutorial
 
