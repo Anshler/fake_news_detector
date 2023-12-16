@@ -1,4 +1,4 @@
-# DETECT FAKE NEWS IN ENGLISH AND VIETNAMESE
+# FAKE NEWS DETECTION IN ENGLISH AND VIETNAMESE 📰❌
 
 Due to the strong development of the internet in recent years, news all over the world are transmitted faster and faster through news websites, social media, blogs, etc. However, this also make it easier for Fake news to spread, which, sometimes, can lead to the outbreak of mass hysteria and negative impact on society. 
 
